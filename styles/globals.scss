@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color-start: theme(colors.gray.100);
+  --bg-color-end: theme(colors.gray.100);
+  --color: theme(colors.gray.900);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color-start: #11212c;
+    --bg-color-end: #11212c;
+    --color: theme(colors.cyan.200);
+  }
+}
+
+.bg {
+  color: var(--color);
+  background: linear-gradient(to bottom,
+      transparent,
+      var(--bg-color-start)) var(--bg-color-end);
+}
+
+main {
+  height: 80vh;
+}
