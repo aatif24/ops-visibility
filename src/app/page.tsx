@@ -7,7 +7,7 @@ export default function Home() {
   const [ filters, setFilters ] = useState({})
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen max-h-screen">
       <Chart rendered={rendered} setRendered={setRendered} dashboardId={DASHBOARD_ID} filters={filters} />
     </main>
   )
