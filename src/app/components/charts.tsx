@@ -11,12 +11,8 @@ type props = {
 }
 export default function Chart({ filters = {}, dashboardId, rendered, setRendered }: props): ReactElement {
     const chartDiv = useRef<any>(null);
-    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-    console.log("🚀 ~ file: charts.tsx:15 ~ Chart ~ darkThemeMq:", darkThemeMq);
-
-
     const [ dashboard ] = useState(sdk.createDashboard({
-        dashboardId, widthMode: "scale", height: "100%", filter: filters, theme: darkThemeMq.matches ? 'dark' : 'light', getUserToken: async () => {
+        dashboardId, widthMode: "scale", height: "100%", filter: filters, getUserToken: async () => {
             // const response = await fetch('/api/opsDashboard/getToken', { method: "POST" });
             // const { token } = await response.json();
             // return token
