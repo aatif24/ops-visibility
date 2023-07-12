@@ -88,57 +88,60 @@ export default function Home() {
     <main className="min-h-screen max-h-screen">
       <div>
         <p className="text-5xl text-orange-600 absolute top-0 left-1/2">{selectedCustomer}</p>
-        <ProgressBar counter={30} />
+        {selectedCustomer ? <ProgressBar counter={30} /> : null}
       </div>
-      {selectedCustomer ? <><div className="flex w-full">
-        <div>
-          <div className="h-40 w-40 ">
-            <div className="m-1 bg-white h-full flex justify-center flex-col">
-              <p className=" font-medium flex justify-center mt-4">Boxes</p>
-              <p className="text-5xl flex-grow flex justify-center  mt-4">
-                {
-                  allBoxes.loading ? <ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> : allBoxes.count
-                }
-              </p>
-            </div>
-          </div>
-          <div className="h-40 w-40 p-1">
-            <Chart rendered={rendered} setRendered={setRendered} chartId={charts.aircrafts} filters={filters} />
-          </div>
-        </div>
-        <div className="h-80 w-1/2 p-1">
-          <Chart rendered={rendered} setRendered={setRendered} chartId={charts.connections} filters={filters} />
-        </div>
-        <div className="h-80 w-1/2 p-1">
-          <Chart rendered={rendered} setRendered={setRendered} chartId={charts.flights} filters={filters} />
-        </div>
-      </div>
-        <div className="flex w-full">
-          <div>
-            <div className="h-40 w-40 ">
-              <div className="m-1 bg-white h-full flex justify-center flex-col">
-                <p className=" font-medium flex justify-center mt-4">Online Boxes</p>
-                <p className="text-5xl flex-grow flex justify-center mt-4">
-                  {
-                    onlineBoxes.loading ? <ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> : onlineBoxes.count
-                  }
-                </p>
-              </div>
-            </div>
-            <div className="h-40 w-40 ">
-              <div className="m-1 bg-white h-full flex justify-center flex-col">
+      {selectedCustomer ?
+        <>
+          <div className="flex w-full">
 
-                <p className=" font-medium flex justify-center mt-4">{`offline > 2 Days`}</p>
-                <p className="text-5xl flex-grow flex justify-center  mt-4">
-                  {
-                    offlineBoxes.loading ? <ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> : offlineBoxes.count
-                  }
-                </p>
+            <div>
+              <div className="h-40 w-40 ">
+                <div className="m-1 bg-white h-full flex justify-center flex-col">
+                  <p className=" font-medium flex justify-center mt-4">Boxes</p>
+                  <p className="text-5xl flex-grow flex justify-center  mt-4">
+                    {
+                      allBoxes.loading ? <ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> : allBoxes.count
+                    }
+                  </p>
+                </div>
+              </div>
+              <div className="h-40 w-40 p-1">
+                <Chart rendered={rendered} setRendered={setRendered} chartId={charts.aircrafts} filters={filters} />
+              </div>
+            </div>
+            <div className="h-80 w-1/2 p-1">
+              <Chart rendered={rendered} setRendered={setRendered} chartId={charts.connections} filters={filters} />
+            </div>
+            <div className="h-80 w-1/2 p-1">
+              <Chart rendered={rendered} setRendered={setRendered} chartId={charts.flights} filters={filters} />
+            </div>
+          </div>
+          <div className="flex w-full">
+            <div>
+              <div className="h-40 w-40 ">
+                <div className="m-1 bg-white h-full flex justify-center flex-col">
+                  <p className=" font-medium flex justify-center mt-4">Online Boxes</p>
+                  <p className="text-5xl flex-grow flex justify-center mt-4">
+                    {
+                      onlineBoxes.loading ? <ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> : onlineBoxes.count
+                    }
+                  </p>
+                </div>
+              </div>
+              <div className="h-40 w-40 ">
+                <div className="m-1 bg-white h-full flex justify-center flex-col">
+
+                  <p className=" font-medium flex justify-center mt-4">{`offline > 2 Days`}</p>
+                  <p className="text-5xl flex-grow flex justify-center  mt-4">
+                    {
+                      offlineBoxes.loading ? <ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> : offlineBoxes.count
+                    }
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </>
+        </>
         : null}
     </main>
   )
