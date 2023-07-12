@@ -6,7 +6,8 @@ const charts = {
   boxes: '64ad400c-ed87-4ba0-8a5a-a29dc5f49bea',
   aircrafts: "64ad41f7-19ae-4458-801f-6cfc69afa5a7",
   connections: "64ad400c-ed87-4526-8fc0-a29dc5f49c02",
-  flights: "64ad400c-ed87-4589-8019-a29dc5f49c0c"
+  flights: "64ad400c-ed87-4589-8019-a29dc5f49c0c",
+  temp: "64ae67de-de9a-4d2c-8a7e-063a5f539612"
 }
 export default function Home() {
   const [ rendered, setRendered ] = useState(false);
@@ -52,18 +53,26 @@ export default function Home() {
           <Chart rendered={rendered} setRendered={setRendered} chartId={charts.flights} filters={filters} />
         </div>
       </div>
-      <div className="h-40 w-40 ">
-        <div className="m-1 bg-white h-full flex justify-center flex-col">
-          <p className=" font-medium flex justify-center mt-4">Online Boxes</p>
-          <p className="text-5xl flex-grow flex justify-center  mt-4">{onlineBoxes}</p>
+      <div className="flex w-full">
+        <div>
+          <div className="h-40 w-40 ">
+            <div className="m-1 bg-white h-full flex justify-center flex-col">
+              <p className=" font-medium flex justify-center mt-4">Online Boxes</p>
+              <p className="text-5xl flex-grow flex justify-center  mt-4">{onlineBoxes}</p>
+            </div>
+          </div>
+          <div className="h-40 w-40 ">
+            <div className="m-1 bg-white h-full flex justify-center flex-col">
+              <p className=" font-medium flex justify-center mt-4">{`offline > 2 Days`}</p>
+              <p className="text-5xl flex-grow flex justify-center  mt-4">{offlineBoxes}</p>
+            </div>
+          </div>
+        </div>
+        <div className=" custom-chart w-full p-1">
+          <Chart rendered={rendered} setRendered={setRendered} chartId={charts.temp} filters={filters} />
         </div>
       </div>
-      <div className="h-40 w-40 ">
-        <div className="m-1 bg-white h-full flex justify-center flex-col">
-          <p className=" font-medium flex justify-center mt-4">{`offline > 2 Days`}</p>
-          <p className="text-5xl flex-grow flex justify-center  mt-4">{offlineBoxes}</p>
-        </div>
-      </div>
+
     </main>
   )
 }
