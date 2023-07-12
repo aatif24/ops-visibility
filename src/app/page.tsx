@@ -10,7 +10,7 @@ const charts = {
 }
 import { ArrowPathIcon } from '@heroicons/react/20/solid'
 import ProgressBar from "./components/progress";
-
+const interval = 30;
 type customer = {
   _id: string
 }
@@ -37,16 +37,19 @@ export default function Home() {
 
   useEffect(() => {
     if (customers && customers.length) {
-      (async () => {
-        for (let customer of customers) {
-          setSelectedCutomer(customer?._id)
-          setFilters({ IATA: customer?._id })
-          setProgress(100);
-          await sleep(30000)
-        }
-      })()
+      startPresentation(customers)
     }
   }, [ customers ])
+
+  async function startPresentation(customers: any) {
+    for (let customer of customers) {
+      setSelectedCutomer(customer?._id)
+      setFilters({ IATA: customer?._id })
+      setProgress(100);
+      await sleep(interval * 1000)
+    }
+    startPresentation(customers)
+  }
 
 
   useEffect(() => {
@@ -88,7 +91,7 @@ export default function Home() {
     <main className="min-h-screen max-h-screen">
       <div>
         <p className="text-5xl text-orange-600 absolute top-0 left-1/2">{selectedCustomer}</p>
-        {selectedCustomer ? <ProgressBar counter={30} /> : null}
+        {selectedCustomer ? <ProgressBar change={selectedCustomer} counter={interval} /> : null}
       </div>
       {selectedCustomer ?
         <>

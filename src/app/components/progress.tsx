@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react"
 
-export default function ProgressBar({ counter }: any) {
+export default function ProgressBar({ counter, change }: any) {
     const [ progressPercentage, setProgressPercentage ] = useState(100);
 
     useEffect(() => {
+        setProgressPercentage(100);
         let interval = setInterval(() => {
             setProgressPercentage((prev: any) => {
                 let pieces = 100 / counter;
                 let num = prev - pieces;
                 if (num <= pieces) {
-                    return 100
+                    clearInterval(interval);
                 }
                 return num;
             })
         }, 1000)
-    }, [])
+    }, [ change ])
 
     return <div className='h-1 w-full bg-gray-300'>
         <div
