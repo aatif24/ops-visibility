@@ -12,11 +12,11 @@ export function middleware(req: NextRequest) {
     const authValue = basicAuth.split(' ')[1]
     const [user, pwd] = atob(authValue).split(':')
 
-    if (user === 'admin' && pwd === 'admin') {
+    if (user === 'airfi-nl' && pwd === 'csm-board') {
       return NextResponse.next()
     }
   }
-  url.pathname = '/auth'
+  url.pathname = '/api/auth'
 
   return NextResponse.rewrite(url)
 }

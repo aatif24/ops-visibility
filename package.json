@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
     "@mongodb-js/charts-embed-dom": "^3.1.0",
     "@types/node": "20.4.1",
     "@types/react": "18.2.14",
