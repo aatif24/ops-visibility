@@ -10,10 +10,12 @@ const charts = {
 }
 import { ArrowPathIcon } from '@heroicons/react/20/solid'
 import ProgressBar from "./components/progress";
-const interval = 30;
+const interval = 5;
+
 type customer = {
   _id: string
 }
+
 export default function Home() {
   const [ rendered, setRendered ] = useState(false);
   const [ filters, setFilters ] = useState({})
@@ -29,7 +31,7 @@ export default function Home() {
       const response = await fetch('/api/atlas/getCustomers');
       let customersData = await response.json();
       if (customersData.length) {
-        customersData = customersData.filter((iata: any) => iata._id != null)
+        customersData = customersData.filter((iata: any) => iata != null)
         setCustomers(customersData)
       }
     })()
@@ -43,8 +45,8 @@ export default function Home() {
 
   async function startPresentation(customers: any) {
     for (let customer of customers) {
-      setSelectedCutomer(customer?._id)
-      setFilters({ IATA: customer?._id })
+      setSelectedCutomer(customer)
+      setFilters({ IATA: customer })
       setProgress(100);
       await sleep(interval * 1000)
     }
@@ -84,8 +86,6 @@ export default function Home() {
       })()
     }
   }, [ selectedCustomer ])
-
-
 
   return (
     <main className="min-h-screen max-h-screen">

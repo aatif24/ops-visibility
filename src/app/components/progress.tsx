@@ -2,10 +2,13 @@ import { useEffect, useState } from "react"
 
 export default function ProgressBar({ counter, change }: any) {
     const [ progressPercentage, setProgressPercentage ] = useState(100);
-
+    let interval: any = null;
     useEffect(() => {
+        if (interval)
+            clearInterval(interval);
+
         setProgressPercentage(100);
-        let interval = setInterval(() => {
+        interval = setInterval(() => {
             setProgressPercentage((prev: any) => {
                 let pieces = 100 / counter;
                 let num = prev - pieces;
