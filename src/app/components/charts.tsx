@@ -5,18 +5,18 @@ const sdk = new ChartsEmbedSDK({ baseUrl: 'https://charts.mongodb.com/charts-air
 
 type props = {
     filters: PlainObject;
-    dashboardId: string;
+    chartId: string;
     rendered: boolean;
     setRendered: (_: boolean) => void;
 }
-export default function Chart({ filters = {}, dashboardId, rendered, setRendered }: props): ReactElement {
+export default function Chart({ filters = {}, chartId, rendered, setRendered }: props): ReactElement {
     const chartDiv = useRef<any>(null);
-    const [ dashboard ] = useState(sdk.createDashboard({
-        dashboardId, widthMode: "scale", height: "100%", filter: filters, getUserToken: async () => {
+    const [ dashboard ] = useState(sdk.createChart({
+        chartId, height: "100%", filter: filters, getUserToken: async () => {
             // const response = await fetch('/api/opsDashboard/getToken', { method: "POST" });
             // const { token } = await response.json();
             // return token
-            return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODkwNzQ5MTYsImV4cCI6MTY4OTE2MTMxNn0.YAYV5TEthdrx6r_3Rzo5fkfEU3dyQMo_31pCvVMn2mo"
+            return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODkxNTMzMjMsImV4cCI6MTY4OTIzOTcyM30.ab7xnO3VOTzDa9xeJSfeonjUkkD_QyEXBo4vJfcfZ1s"
         }
     }));
 
