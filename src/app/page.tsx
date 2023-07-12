@@ -10,7 +10,7 @@ const charts = {
 }
 import { ArrowPathIcon } from '@heroicons/react/20/solid'
 import ProgressBar from "./components/progress";
-const interval = 5;
+const interval = 30;
 
 type customer = {
   _id: string
