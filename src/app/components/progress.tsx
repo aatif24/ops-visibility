@@ -20,10 +20,10 @@ export default function ProgressBar({ counter, change }: any) {
         }, 1000)
     }, [ change ])
 
-    return <div className='h-1 w-full bg-gray-300'>
+    return <div className='h-1 w-full bg-gray-100'>
         <div
             style={{ width: `${progressPercentage}%` }}
-            className={`h-full bg-orange-600 transition-all duration-300 ease-in-out`}>
+            className={`h-full rounded-full bg-orange-600 transition-all duration-300 ease-in-out`}>
         </div>
     </div>
 }
