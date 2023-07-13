@@ -100,7 +100,7 @@ export default function Home() {
     <main className="min-h-screen max-h-screen">
       <div>
         <p className="text-5xl text-orange-600 absolute top-0 left-1/2">{selectedCustomer}</p>
-        {!loading ? <ProgressBar change={selectedCustomer} counter={interval} /> : null}
+        {!loading ? <ProgressBar change={selectedCustomer} counter={interval} /> : <div className='h-1 w-full bg-orange-600'></div>}
       </div>
       {selectedCustomer ?
         <>
