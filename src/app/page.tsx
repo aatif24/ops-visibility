@@ -18,14 +18,13 @@ type customer = {
 }
 
 export default function Home() {
-  const [ filters, setFilters ] = useState({})
-  const [ onlineBoxes, setOnlineBoxes ] = useState({ loading: true, count: 0 })
-  const [ allBoxes, setAllBoxes ] = useState({ loading: true, count: 0 })
-  const [ offlineBoxes, setOfflineBoxes ] = useState({ loading: true, count: 0 })
-  const [ customers, setCustomers ] = useState<customer[]>()
-  const [ selectedCustomer, setSelectedCutomer ] = useState<string>("")
-  const [ progress, setProgress ] = useState<number>(40)
-  const [ loading, setLoading ] = useState<boolean>(true)
+  const [filters, setFilters] = useState({})
+  const [onlineBoxes, setOnlineBoxes] = useState({ loading: true, count: 0 })
+  const [allBoxes, setAllBoxes] = useState({ loading: true, count: 0 })
+  const [offlineBoxes, setOfflineBoxes] = useState({ loading: true, count: 0 })
+  const [customers, setCustomers] = useState<customer[]>()
+  const [selectedCustomer, setSelectedCutomer] = useState<string>("")
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     (async () => {
@@ -42,13 +41,12 @@ export default function Home() {
     if (customers && customers.length) {
       startPresentation(customers)
     }
-  }, [ customers ])
+  }, [customers])
 
   async function startPresentation(customers: any) {
     for (let customer of customers) {
       setSelectedCutomer(customer)
       setFilters({ IATA: customer })
-      setProgress(100);
       await sleep(interval * 1000)
     }
     startPresentation(customers)
@@ -63,7 +61,7 @@ export default function Home() {
         setOnlineBoxes({ loading: false, count: dataOnlineBoxes.totalCount });
       })()
     }
-  }, [ selectedCustomer ])
+  }, [selectedCustomer])
 
   useEffect(() => {
     if (selectedCustomer != "") {
@@ -74,7 +72,7 @@ export default function Home() {
         setAllBoxes({ loading: false, count: dataAllBoxes.totalCount });
       })()
     }
-  }, [ selectedCustomer ])
+  }, [selectedCustomer])
 
   useEffect(() => {
     if (selectedCustomer != "") {
@@ -85,7 +83,7 @@ export default function Home() {
         setOfflineBoxes({ loading: false, count: dataOfflineBoxes.totalCount });
       })()
     }
-  }, [ selectedCustomer ])
+  }, [selectedCustomer])
 
   useEffect(() => {
     if (selectedCustomer != "") {
@@ -94,7 +92,7 @@ export default function Home() {
         setLoading(false);
       }, 300)
     }
-  }, [ selectedCustomer ])
+  }, [selectedCustomer])
 
   return (
     <main className="min-h-screen max-h-screen">
@@ -118,16 +116,16 @@ export default function Home() {
                 </div>
               </div>
               <div className="h-40 w-40 m-1 flex justify-center items-center bg-white">
-                {loading ?<ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> :
+                {loading ? <ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> :
                   <Chart chartId={charts.aircrafts} filters={filters} />}
               </div>
             </div>
             <div className="h-82 mt-2 w-1/2 m-1 flex justify-center items-center bg-white">
-              {loading ?<ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> :
+              {loading ? <ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> :
                 <Chart chartId={charts.connections} filters={filters} />}
             </div>
             <div className="h-82 mt-2 w-1/2 m-1 flex justify-center items-center bg-white">
-              {loading ?<ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> :
+              {loading ? <ArrowPathIcon className="text-gray-600 h-6 wi-6 animate-spin" /> :
                 <Chart chartId={charts.flights} filters={filters} />}
             </div>
           </div>
@@ -145,7 +143,6 @@ export default function Home() {
               </div>
               <div className="h-40 w-40 m-1 my-2">
                 <div className="bg-white h-full flex justify-center flex-col">
-
                   <p className=" font-medium flex justify-center mt-4">{`offline > 2 Days`}</p>
                   <p className="text-5xl flex-grow flex justify-center  mt-4">
                     {

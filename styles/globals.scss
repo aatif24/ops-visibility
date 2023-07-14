@@ -6,6 +6,8 @@
   --bg-color-start: theme(colors.gray.100);
   --bg-color-end: theme(colors.gray.100);
   --color: theme(colors.gray.900);
+  --gray: theme(colors.gray.100);
+  --orange-600: theme(colors.orange.600);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,4 +40,18 @@ main {
 
 .custom-chart {
   height: 60vh;
+}
+
+progress {
+  --webkit-appearance: none;
+  transition: all ease-in-out 3s;
+}
+
+progress::-webkit-progress-bar {
+  background-color: var(--gray);
+}
+
+progress::-webkit-progress-value {
+  background-color: var(--orange-600);
+  border-radius: 0 100px 100px 0;
 }
